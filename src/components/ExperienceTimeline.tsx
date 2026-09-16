@@ -124,7 +124,7 @@ export const ExperienceTimeline: React.FC = () => {
           Professional Experience
         </h2>
         <p className="font-body text-[#9c978d] text-base sm:text-lg max-w-2xl mt-4">
-          6+ years delivering cloud infrastructure, automated pipelines, and Kubernetes operations for enterprise tier clients.
+          5+ years delivering cloud infrastructure, automated pipelines, and Kubernetes operations for enterprise tier clients.
         </p>
       </div>
 

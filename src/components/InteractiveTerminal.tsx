@@ -76,7 +76,7 @@ export const InteractiveTerminal: React.FC = () => {
               <div><span className="text-[#84a98c] font-bold">bosu</span><span className="text-[#68645c]">@</span><span className="text-[#d4a373] font-bold">azure-aws-mesh</span></div>
               <div className="text-[#68645c]">----------------------------</div>
               <div><span className="text-[#9c978d] font-semibold">Engineer:</span> Bosu Kodelli</div>
-              <div><span className="text-[#9c978d] font-semibold">Title:</span> Senior DevOps Engineer (6+ Years)</div>
+              <div><span className="text-[#9c978d] font-semibold">Title:</span> Senior DevOps Engineer (5+ Years)</div>
               <div><span className="text-[#9c978d] font-semibold">Company:</span> Jeta Software (Clients: Capital One, IBM)</div>
               <div><span className="text-[#9c978d] font-semibold">Clouds:</span> Microsoft Azure, Amazon AWS, GCP</div>
               <div><span className="text-[#9c978d] font-semibold">Orchestration:</span> Kubernetes (AKS/EKS), Helm, Argo CD</div>

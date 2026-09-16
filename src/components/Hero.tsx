@@ -121,7 +121,7 @@ export const Hero: React.FC = () => {
   ];
 
   const metrics = [
-    { value: "6+ Yrs", label: "DevOps & Cloud Exp", sub: "Azure & AWS Specialist", icon: Activity },
+    { value: "5+ Yrs", label: "DevOps & Cloud Exp", sub: "Azure & AWS Specialist", icon: Activity },
     { value: "30%", label: "Cloud Cost Saved", sub: "CAST AI & Workload Tuning", icon: DollarSign },
     { value: "40%", label: "MTTR Reduction", sub: "AI & SOP Automation", icon: Bot },
     { value: "20%", label: "Faster Deployments", sub: "Zero-Downtime Blue/Green", icon: Zap },
@@ -184,7 +184,7 @@ export const Hero: React.FC = () => {
           ref={subtitleRef}
           className="font-body text-base sm:text-lg lg:text-xl text-[#9c978d] max-w-2xl leading-relaxed mb-8 text-balance font-normal"
         >
-          Dedicated DevOps professional with 6+ years of hands-on experience designing, automating, and optimizing cloud infrastructure across Azure and AWS with Kubernetes, Terraform, DevSecOps, and FinOps.
+          Dedicated DevOps professional with 5+ years of hands-on experience designing, automating, and optimizing cloud infrastructure across Azure and AWS with Kubernetes, Terraform, DevSecOps, and FinOps.
         </p>
 
         {/* Natural Stone Avatar & Profile Card Showcase */}
@@ -216,7 +216,7 @@ export const Hero: React.FC = () => {
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   <span className="px-2 py-0.5 rounded-full bg-[#1b1e24] text-[10px] font-code text-[#d6d0c4] border border-white/[0.06]">
-                    6+ Yrs Exp
+                    5+ Yrs Exp
                   </span>
                   <span className="px-2 py-0.5 rounded-full bg-[#1b1e24] text-[10px] font-code text-[#d6d0c4] border border-white/[0.06]">
                     Jeta Software

@@ -10,7 +10,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
-An ultra-modern, interactive cloud & DevOps engineering portfolio showcasing 6+ years of enterprise architecture, multi-cloud Kubernetes (AKS/EKS), Infrastructure as Code (Terraform), DevSecOps pipelines, FinOps cost governance, and GenAI agent workflows.
+An ultra-modern, interactive cloud & DevOps engineering portfolio showcasing 5+ years of enterprise architecture, multi-cloud Kubernetes (AKS/EKS), Infrastructure as Code (Terraform), DevSecOps pipelines, FinOps cost governance, and GenAI agent workflows.
 
 [Live Demo](http://localhost:5173) • [Docker Image](#-running-with-docker) • [Architecture](#-project-structure) • [Contact](#-contact)
 

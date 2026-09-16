@@ -94,7 +94,7 @@ export const About: React.FC = () => {
           Delivering Resilient, Automated Cloud Scale
         </h2>
         <p className="font-body text-[#9c978d] text-base sm:text-lg max-w-2xl mt-4">
-          6+ years of proven leadership building automated CI/CD pipelines, Kubernetes orchestrations, and DevSecOps frameworks for global enterprises.
+          5+ years of proven leadership building automated CI/CD pipelines, Kubernetes orchestrations, and DevSecOps frameworks for global enterprises.
         </p>
       </div>
 
@@ -143,7 +143,7 @@ export const About: React.FC = () => {
               </div>
             </div>
             <span className="px-3 py-1 rounded-full bg-[#84a98c]/10 border border-[#84a98c]/25 text-[#84a98c] font-code text-xs font-medium">
-              6+ Yrs Active
+              5+ Yrs Active
             </span>
           </div>
 

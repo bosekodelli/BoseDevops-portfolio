@@ -25,7 +25,12 @@ export const DevOpsScrollController: React.FC = () => {
   const { scrollTo } = useLenis();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentStage, setCurrentStage] = useState<Stage>(devOpsStages[0]);
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 640;
+    }
+    return false;
+  });
   const pathRef = useRef<SVGPathElement>(null);
   const travelerRef = useRef<SVGCircleElement>(null);
   const travelerHaloRef = useRef<SVGCircleElement>(null);
@@ -91,28 +96,35 @@ export const DevOpsScrollController: React.FC = () => {
   };
 
   return (
-    <div className="fixed right-4 sm:right-6 bottom-6 z-40 select-none flex flex-col items-end gap-2 pointer-events-auto">
+    <div className="fixed right-3 sm:right-6 bottom-4 sm:bottom-6 z-40 select-none flex flex-col items-end gap-2 pointer-events-auto">
       
       {/* Main Interactive DevOps Controller Widget with Radiant Glow */}
       <div className={`transition-all duration-300 rounded-3xl bg-[#131519]/95 backdrop-blur-2xl border border-white/[0.12] shadow-[0_0_35px_rgba(132,169,140,0.2),0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden relative ${
-        isExpanded ? 'p-4 w-[220px]' : 'p-2.5 w-auto'
-      }`}>
+        isExpanded ? 'p-4 w-[220px]' : 'p-2 sm:p-2.5 w-auto cursor-pointer hover:border-[#84a98c]/40'
+      }`}
+      onClick={!isExpanded ? () => setIsExpanded(true) : undefined}
+      >
         
         {/* Soft Ambient Inner Glow */}
         <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#84a98c]/20 rounded-full blur-2xl pointer-events-none" />
         <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-[#d4a373]/15 rounded-full blur-2xl pointer-events-none" />
 
         {/* Header Bar */}
-        <div className="flex items-center justify-between gap-2 pb-2 border-b border-white/[0.08] mb-3 relative z-10">
+        <div className={`flex items-center justify-between gap-2 relative z-10 ${
+          isExpanded ? 'pb-2 border-b border-white/[0.08] mb-3' : ''
+        }`}>
           <div
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
             className="flex items-center gap-2 cursor-pointer group"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#84a98c] opacity-90"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#84a98c] shadow-[0_0_8px_#84a98c]"></span>
             </span>
-            <span className="font-code text-[11px] font-bold text-[#f4f1ea] group-hover:text-[#a3b18a] transition-colors drop-shadow-sm">
+            <span className="font-code text-[11px] font-bold text-[#f4f1ea] group-hover:text-[#a3b18a] transition-colors drop-shadow-sm whitespace-nowrap">
               DEVOPS LOOP
             </span>
           </div>
@@ -122,8 +134,11 @@ export const DevOpsScrollController: React.FC = () => {
               {Math.round(scrollProgress * 100)}%
             </span>
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="p-1 rounded-lg bg-[#1c1f26] text-[#9c978d] hover:text-[#f4f1ea] text-[10px] border border-white/[0.06]"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
+              className="p-1 rounded-lg bg-[#1c1f26] text-[#9c978d] hover:text-[#f4f1ea] text-[10px] border border-white/[0.06] cursor-pointer"
               aria-label="Toggle DevOps Scroll Controller"
             >
               <RotateCcw className={`w-3 h-3 transition-transform duration-300 ${isExpanded ? '' : 'rotate-180'}`} />
