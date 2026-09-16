@@ -8,11 +8,7 @@ interface CommandOutput {
 
 export const InteractiveTerminal: React.FC = () => {
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<CommandOutput[]>([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
-  const [commandHistory, setCommandHistory] = useState<string[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalBodyRef = useRef<HTMLDivElement>(null);
 
   const initialGreeting: CommandOutput = {
     command: 'welcome',
@@ -28,12 +24,15 @@ export const InteractiveTerminal: React.FC = () => {
     ),
   };
 
-  useEffect(() => {
-    setHistory([initialGreeting]);
-  }, []);
+  const [history, setHistory] = useState<CommandOutput[]>([initialGreeting]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (history.length > 1 && terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    }
   }, [history]);
 
   const handleCommand = (cmd: string) => {
@@ -258,6 +257,7 @@ export const InteractiveTerminal: React.FC = () => {
 
         {/* Terminal Content Area */}
         <div
+          ref={terminalBodyRef}
           className="p-5 font-code text-xs sm:text-sm min-h-[320px] max-h-[460px] overflow-y-auto space-y-4 bg-[#0e0f12]"
           onClick={() => inputRef.current?.focus()}
         >
@@ -282,7 +282,6 @@ export const InteractiveTerminal: React.FC = () => {
               onKeyDown={handleKeyDown}
               className="flex-1 bg-transparent border-none outline-none text-[#f4f1ea] font-code text-xs sm:text-sm focus:ring-0 p-0"
               placeholder="Type 'help' or click a command above..."
-              autoFocus
             />
             <button
               onClick={() => handleCommand(input)}
@@ -291,8 +290,6 @@ export const InteractiveTerminal: React.FC = () => {
               <CornerDownLeft className="w-3.5 h-3.5" />
             </button>
           </div>
-
-          <div ref={terminalEndRef} />
         </div>
       </div>
     </section>
