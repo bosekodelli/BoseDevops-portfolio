@@ -31,8 +31,12 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    ScrollTrigger.clearScrollMemory('manual');
+    ScrollTrigger.clearScrollMemory();
+    
+    // Force immediate scroll to top across document and window
     window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
 
     // 1. Initialize Lenis smooth scroll engine
     const lenis = new Lenis({
@@ -41,7 +45,7 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      syncTouch: false, // Keep native touch on mobile to prevent layout/scroll jumps
     });
 
     lenis.scrollTo(0, { immediate: true });
@@ -59,22 +63,28 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // Reset scroll on load
-    const handleLoad = () => {
+    // Reset scroll to 0,0 reliably across lifecycle events
+    const resetScrollToTop = () => {
       window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
       lenis.scrollTo(0, { immediate: true });
       ScrollTrigger.refresh();
     };
 
-    window.addEventListener('load', handleLoad);
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true });
-    });
+    resetScrollToTop();
+    window.addEventListener('load', resetScrollToTop);
+    window.addEventListener('pageshow', resetScrollToTop);
+
+    const rAF1 = requestAnimationFrame(resetScrollToTop);
+    const timeoutId = setTimeout(resetScrollToTop, 120);
 
     // 4. Clean lifecycle teardown
     return () => {
-      window.removeEventListener('load', handleLoad);
+      window.removeEventListener('load', resetScrollToTop);
+      window.removeEventListener('pageshow', resetScrollToTop);
+      cancelAnimationFrame(rAF1);
+      clearTimeout(timeoutId);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
