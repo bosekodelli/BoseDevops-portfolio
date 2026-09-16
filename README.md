@@ -248,3 +248,5 @@ The production runner uses a minimal `nginx:1.27-alpine` container configured wi
 <div align="center">
   <sub>Built with ❤️ using React 19, TypeScript, GSAP, and Docker. Designed with a Minimalist Natural Stone Theme.</sub>
 </div>
+
+<!-- Cloudflare webhook build trigger -->
